@@ -1,0 +1,21 @@
+services:
+  error_handler:
+    image: nginx:alpine
+
+    volumes:
+      - ./errors:/usr/share/nginx/html:ro
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.services.errorpage.loadbalancer.server.port=${INTERNAL_PORT}"
+
+    expose:
+      - "${INTERNAL_PORT}"
+
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    name: traefik
+    external: true
