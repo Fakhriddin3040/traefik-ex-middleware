@@ -1,5 +1,5 @@
 services:
-  error_handler:
+  error-handler:
     image: nginx:alpine
 
     volumes:
